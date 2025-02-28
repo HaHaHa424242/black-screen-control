@@ -75,7 +75,7 @@
     <p id="status" class="glow">狀態: 正在等待伺服器連接...</p>
 
     <script>
-        let server_ip = "192.168.0.135";  // ⚠️ 記得改成你的伺服器 IP，例如 "192.168.1.100"
+        let server_ip = getServerIP()  // ⚠️ 記得改成你的伺服器 IP，例如 "192.168.1.100"
         let ws;
         let isConnected = false;
 
@@ -88,7 +88,13 @@
                 alert("❌ 連線失敗，請檢查伺服器是否開啟");
             }
         }
-
+        function getServerIP() {
+            fetch('https://hahaha424242.github.io')
+            .then(response => response.json())
+            .then(data => console.log(data.ip))
+            .catch(console.error);
+  
+        }
         // 當按鈕被點擊時，發送解除黑屏指令
         function restoreScreen() {
             if (ws && ws.readyState === WebSocket.OPEN) {
